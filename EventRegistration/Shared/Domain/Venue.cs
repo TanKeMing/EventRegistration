@@ -8,6 +8,7 @@ namespace EventRegistration.Shared.Domain
 {
     public class Venue
     {
+        public int Venueid { get; set; }
        public string Venuename { get; set; }
         public string Venueaddress { get; set; }
         public string Venuedescription { get; set; }

@@ -4,6 +4,7 @@ namespace EventRegistration.Shared.Domain
 {
     public class Event
     {
+        public int Eventid { get; set; }
         public string EventName { get; set; }
         public string EventDescription { get; set; }
         public string EventVenue { get; set; }

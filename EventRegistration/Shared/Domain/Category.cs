@@ -8,6 +8,7 @@ namespace EventRegistration.Shared.Domain
 {
     public class Category
     {
+        public int Categoryid { get; set; }
         public string Categoryname { get; set; }
         public string Categorydescription { get; set; }
 

@@ -8,6 +8,7 @@ namespace EventRegistration.Shared.Domain
 {
     public class Payment
     {
+        public int Paymentid { get; set; }
         public DateTime PaymentdateCreated { get; set; }
 
         public DateTime PaymentdateUpdated { get; set; }

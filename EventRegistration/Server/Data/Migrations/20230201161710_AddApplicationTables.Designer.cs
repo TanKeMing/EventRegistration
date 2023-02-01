@@ -4,14 +4,16 @@ using EventRegistration.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EventRegistration.Server.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230201161710_AddApplicationTables")]
+    partial class AddApplicationTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -256,22 +258,6 @@ namespace EventRegistration.Server.Data.Migrations
                     b.HasKey("Staffid");
 
                     b.ToTable("Staffs");
-
-                    b.HasData(
-                        new
-                        {
-                            Staffid = 1,
-                            Staffcontactnumber = "89422042",
-                            Staffemail = "kolan@gmail.com",
-                            Staffgender = "female"
-                        },
-                        new
-                        {
-                            Staffid = 2,
-                            Staffcontactnumber = "99427042",
-                            Staffemail = "sam@gmail.com",
-                            Staffgender = "male"
-                        });
                 });
 
             modelBuilder.Entity("EventRegistration.Shared.Domain.Venue", b =>
@@ -292,23 +278,7 @@ namespace EventRegistration.Server.Data.Migrations
 
                     b.HasKey("Venueid");
 
-                    b.ToTable("Venues");
-
-                    b.HasData(
-                        new
-                        {
-                            Venueid = 1,
-                            Venueaddress = " Changi",
-                            Venuedescription = "Tech show",
-                            Venuename = "Expo"
-                        },
-                        new
-                        {
-                            Venueid = 2,
-                            Venueaddress = "Tampines Heartbeat",
-                            Venuedescription = "Food show",
-                            Venuename = "Tampines Hall"
-                        });
+                    b.ToTable("Venus");
                 });
 
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.DeviceFlowCodes", b =>
