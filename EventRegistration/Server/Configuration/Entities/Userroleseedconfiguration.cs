@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-namespace CarRentalManagement.Server.Configurations.Entities
+namespace EventRegistration.Server.Configurations.Entities
 {
     public class UserRoleSeedConfiguration :
     IEntityTypeConfiguration<IdentityUserRole<string>>

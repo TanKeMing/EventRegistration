@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using EventRegistration.Server.Models;
 using Microsoft.AspNetCore.Identity;

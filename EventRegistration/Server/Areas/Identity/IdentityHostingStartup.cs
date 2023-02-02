@@ -1,6 +1,5 @@
 ﻿using System;
 using EventRegistration.Server.Data;
-using EventRegistration.Server.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;

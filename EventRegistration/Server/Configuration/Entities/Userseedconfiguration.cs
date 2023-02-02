@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-namespace CarRentalManagement.Server.Configurations.Entities
+namespace EventRegistration.Server.Configurations.Entities
 {
     public class UserSeedConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {
