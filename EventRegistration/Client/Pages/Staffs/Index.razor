@@ -3,6 +3,12 @@
 @inject IJSRuntime js
 @attribute [Authorize]
 <h3 class="card title"> Staffs</h3>
+<a href="/staffs/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Insert new staff
+</a>
+<br />
+<br />
 @if (Staffs == null)
 {
     <div class="alert alert-info">Loading Staffs...</div> }
@@ -13,32 +19,32 @@ else
             <tr>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Staffaddress</th>
-                <th>Staffdescription</th>
+                <th>Staffcontactnumber</th>
+                <th>Staffgender</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var staff in Staffs)
             {
-            <tr>
-                <td>@staff.Staffname</td>
-                <td>@staff.Staffemail</td>
-                <td>@staff.Staffcontactnumber</td>
-                <td>@staff.Staffgender</td>
-                <td>
-                    <a href="/staffs/view/@staff.Id" class="btn btn-primary">
-                        <span class="oi oi-book"></span>
-                    </a>
-                    <a href="/staffs/edit/@staff.Id" class="btn btn-warning">
-                        <span class="oi oi-pencil"></span>
-                    </a>
-                    <button class="btn btn-danger" @onclick="@(()=>Delete(staff.Id))">
-                        <span class="oi oi-delete"></span>
-                    </button>
-                </td>
-            </tr>
-}
+                <tr>
+                    <td>@staff.Staffname</td>
+                    <td>@staff.Staffemail</td>
+                    <td>@staff.Staffcontactnumber</td>
+                    <td>@staff.Staffgender</td>
+                    <td>
+                        <a href="/staffs/view/@staff.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+                        <a href="/staffs/edit/@staff.Id" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(staff.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>}
 

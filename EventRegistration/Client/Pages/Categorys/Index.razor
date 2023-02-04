@@ -3,6 +3,12 @@
 @inject IJSRuntime js
 @attribute [Authorize]
 <h3 class="card title"> Categorys </h3>
+<a href="/categorys/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Category
+</a>
+<br />
+<br />
 @if (Categorys == null)
 {
     <div class="alert alert-info">Loading Categorys...</div> }
@@ -19,22 +25,22 @@ else
         <tbody>
             @foreach (var category in Categorys)
             {
-            <tr>
-                <td>@category.Categoryname</td>
-                <td>@category.Categorydescription</td>
-                <td>
-                    <a href="/categorys/view/@category.Id" class="btn btn-primary">
-                        <span class="oi oi-book"></span>
-                    </a>
-                    <a href="/categorys/edit/@category.Id" class="btn btn-warning">
-                        <span class="oi oi-pencil"></span>
-                    </a>
-                    <button class="btn btn-danger" @onclick="@(()=>Delete(category.Id))">
-                        <span class="oi oi-delete"></span>
-                    </button>
-                </td>
-            </tr>
-}
+                <tr>
+                    <td>@category.Categoryname</td>
+                    <td>@category.Categorydescription</td>
+                    <td>
+                        <a href="/categorys/view/@category.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+                        <a href="/categorys/edit/@category.Id" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(category.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button>
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>}
 

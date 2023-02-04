@@ -3,6 +3,13 @@
 @inject IJSRuntime js
 @attribute [Authorize]
 <h3 class="card title"> Venues </h3>
+<br />
+<a href="/venues/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Venue
+</a>
+<br />
+<br />
 @if (Venues == null)
 {
     <div class="alert alert-info">Loading Venues...</div> }

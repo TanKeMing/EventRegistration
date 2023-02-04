@@ -1,0 +1,72 @@
+﻿@page "/eventss/"
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+<h3 class="card title"> Events </h3>
+@if (Events == null)
+{
+    <div class="alert alert-info">Loading Events...</div> }
+else
+{
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>EventVenue</th>
+                <th>EventDescription</th>
+                <th>Eventtime</th>
+                <th>VenueDescription</th>
+                <th>VenueAddress</th>
+                <th>EventDate</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var events in Events)
+            {
+            <tr>
+                <td>@events.EventName</td>
+                <td>@events.EventVenue</td>
+                <td>@events.EventDescription</td>
+                <td>@events.Eventtime</td>
+                <td>@events.Venue.Venuedescription</td>
+                <td>@events.Venue.Venueaddress</td>
+                <td>@events.DateCreated.Date.ToString("dd MMMM yyyy")</td>
+
+
+                <td>
+                    <a href="/eventss/view/@events.Id" class="btn btn-primary">
+                        <span class="oi oi-book"></span>
+                    </a>
+                    <a href="/eventss/edit/@events.Id" class="btn btn-warning">
+                        <span class="oi oi-pencil"></span>
+                    </a>
+                    <button class="btn btn-danger" @onclick="@(()=>Delete(events.Id))">
+                        <span class="oi oi-delete"></span>
+                    </button>
+                </td>
+            </tr>
+}
+        </tbody>
+    </table>}
+
+@code {
+    private List<Event> Events;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Events = await _client.GetFromJsonAsync<List<Event>>($"{Endpoints.EventsEndpoint}");
+    }
+
+    async Task Delete(int eventsId)
+    {
+        var events = Events.First(q => q.Id == eventsId);
+        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {events.EventName}?");
+        if (confirm)
+        {
+            await _client.DeleteAsync($"{Endpoints.EventsEndpoint}/{eventsId}");
+            await OnInitializedAsync();
+        }
+    }
+
+}

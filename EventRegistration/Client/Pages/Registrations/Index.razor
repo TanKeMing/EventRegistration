@@ -11,10 +11,10 @@ else
 <table class="table table-responsive">
     <thead>
         <tr>
-            <th>location</th>
-            <th>Registrationtime</th>
             <th>CustomerName</th>
             <th>Customeremail</th>
+            <th>location</th>
+            <th>Registrationtime</th>
             <th>Date</th>
             <th>Actions</th>
         </tr>
@@ -23,10 +23,10 @@ else
         @foreach (var registration in Registrations)
         {
         <tr>
-            <td>@registration.location</td>
-            <td>@registration.Registrationtime</td>
             <td>@registration.Customer.Customername</td>
             <td>@registration.Customer.Customeremail</td>
+            <td>@registration.location</td>
+            <td>@registration.Registrationtime</td>
             <td>@registration.DateCreated.Date.ToString("dd MMMM yyyy")</td>
             <td>@((registration.Datein - registration.Dateout).TotalDays.ToString())</td>
             <td>
