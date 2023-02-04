@@ -1,0 +1,60 @@
+﻿@page "/categorys/"
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+<h3 class="card title"> Categorys </h3>
+@if (Categorys == null)
+{
+    <div class="alert alert-info">Loading Categorys...</div> }
+else
+{
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Categorydescription</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var category in Categorys)
+            {
+            <tr>
+                <td>@category.Categoryname</td>
+                <td>@category.Categorydescription</td>
+                <td>
+                    <a href="/categorys/view/@category.Id" class="btn btn-primary">
+                        <span class="oi oi-book"></span>
+                    </a>
+                    <a href="/categorys/edit/@category.Id" class="btn btn-warning">
+                        <span class="oi oi-pencil"></span>
+                    </a>
+                    <button class="btn btn-danger" @onclick="@(()=>Delete(category.Id))">
+                        <span class="oi oi-delete"></span>
+                    </button>
+                </td>
+            </tr>
+}
+        </tbody>
+    </table>}
+
+@code {
+    private List<Category> Categorys;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Categorys = await _client.GetFromJsonAsync<List<Category>>($"{Endpoints.CategorysEndpoint}");
+    }
+
+    async Task Delete(int categoryId)
+    {
+        var category = Categorys.First(q => q.Id == categoryId);
+        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {category.Categoryname}?");
+        if (confirm)
+        {
+            await _client.DeleteAsync($"{Endpoints.CategorysEndpoint}/{categoryId}");
+            await OnInitializedAsync();
+        }
+    }
+
+}

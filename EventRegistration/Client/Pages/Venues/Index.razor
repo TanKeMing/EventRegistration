@@ -1,0 +1,62 @@
+﻿@page "/venues/"
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+<h3 class="card title"> Venues </h3>
+@if (Venues == null)
+{
+    <div class="alert alert-info">Loading Venues...</div> }
+else
+{
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Venueaddress</th>
+                <th>Venuedescription</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var venue in Venues)
+            {
+            <tr>
+                <td>@venue.Venuename</td>
+                <td>@venue.Venueaddress</td>
+                <td>@venue.Venuedescription</td>
+                <td>
+                    <a href="/venues/view/@venue.Id" class="btn btn-primary">
+                        <span class="oi oi-book"></span>
+                    </a>
+                    <a href="/venues/edit/@venue.Id" class="btn btn-warning">
+                        <span class="oi oi-pencil"></span>
+                    </a>
+                    <button class="btn btn-danger" @onclick="@(()=>Delete(venue.Id))">
+                        <span class="oi oi-delete"></span>
+                    </button>
+                </td>
+            </tr>
+}
+        </tbody>
+    </table>}
+
+@code {
+    private List<Venue> Venues;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Venues = await _client.GetFromJsonAsync<List<Venue>>($"{Endpoints.VenuesEndpoint}");
+    }
+
+    async Task Delete(int venueId)
+    {
+        var venue = Venues.First(q => q.Id == venueId);
+        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {venue.Venuename}?");
+        if (confirm)
+        {
+            await _client.DeleteAsync($"{Endpoints.VenuesEndpoint}/{venueId}");
+            await OnInitializedAsync();
+        }
+    }
+
+}

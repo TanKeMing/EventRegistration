@@ -8,7 +8,7 @@ namespace EventRegistration.Shared.Domain
 {
     public class Venue :BaseDomainModel
     {
-
+        
        public string Venuename { get; set; }
         public string Venueaddress { get; set; }
         public string Venuedescription { get; set; }
