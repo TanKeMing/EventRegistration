@@ -61,25 +61,14 @@ namespace EventRegistration.Server.Repository
             var entries = _context.ChangeTracker.Entries()
                 .Where(q => q.State == EntityState.Modified ||
                     q.State == EntityState.Added);
-
-            foreach (var entry in entries)
+           foreach (var entry in entries)
             {
-                ((Payment)entry.Entity).PaymentdateUpdated = DateTime.Now;
-                ((Payment)entry.Entity).PaymentUpdatedby = user;
+                ((BaseDomainModel)entry.Entity).DateUpdated = DateTime.Now;
+                ((BaseDomainModel)entry.Entity).Updatedby = user;
                 if (entry.State == EntityState.Added)
                 {
-                    ((Payment)entry.Entity).PaymentdateCreated = DateTime.Now;
-                    ((Payment)entry.Entity).PaymentUpdatedby = user;
-                }
-            }
-            foreach (var entry in entries)
-            {
-                ((Registration)entry.Entity).DateUpdated = DateTime.Now;
-                ((Registration)entry.Entity).Updatedby = user;
-                if (entry.State == EntityState.Added)
-                {
-                    ((Registration)entry.Entity).DateCreated = DateTime.Now;
-                    ((Registration)entry.Entity).CreatedBy = user;
+                   ((BaseDomainModel)entry.Entity).DateCreated = DateTime.Now;
+                    ((BaseDomainModel)entry.Entity).CreatedBy = user;
                 }
             }
 

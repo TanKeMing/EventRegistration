@@ -5,9 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 namespace EventRegistration.Shared.Domain
 {
-    public class Staff
-    {
-        public int Staffid { get; set; }
+    public class Staff :BaseDomainModel
+    { 
         public string Staffemail { get; set;  }
         public string Staffcontactnumber { get; set; }
         public string Staffgender { get; set; }

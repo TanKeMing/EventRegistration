@@ -13,59 +13,59 @@ namespace EventRegistration.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VenuesController : ControllerBase
+    public class StaffsController : ControllerBase
     {   //refractored
         //private readonly ApplicationDbContext _context;
         private readonly IUnitOfWork _unitOfWork;
         //refractored
-        //public VenuesController(ApplicationDbContext context)
-        public VenuesController(IUnitOfWork unitOfWork)
+        //public StaffsController(ApplicationDbContext context)
+        public StaffsController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
             //_context = context;
         }
 
-        // GET: api/Venues
+        // GET: api/Staffs
         [HttpGet]
         //refractored
-        //public async Task<ActionResult<IEnumerable<Venue>>> GetVenues()
-        public async Task<IActionResult> GetVenues()
+        //public async Task<ActionResult<IEnumerable<Staff>>> GetStaffs()
+        public async Task<IActionResult> GetStaffs()
         {
             //Refractored
-            //return await _context.Venues.ToListAsync();
-            var venues = await _unitOfWork.Venues.GetAll();
-            return Ok(venues);
+            //return await _context.Staffs.ToListAsync();
+            var staffs = await _unitOfWork.Staffs.GetAll();
+            return Ok(staffs);
         }
 
-        // GET: api/Venues/5
+        // GET: api/Staffs/5
         [HttpGet("{id}")]
         //Refractored
-        //public async Task<ActionResult<Venue>> GetVenue(int id)
-        public async Task<IActionResult> GetVenue(int id)
+        //public async Task<ActionResult<Staff>> GetStaff(int id)
+        public async Task<IActionResult> GetStaff(int id)
         {
-            //var venue = await _context.Venues.FindAsync(id);
-            var venue = await _unitOfWork.Venues.Get(q => q.Id == id);
+            //var staff = await _context.Staffs.FindAsync(id);
+            var staff = await _unitOfWork.Staffs.Get(q => q.Id == id);
 
-            if (venue == null)
+            if (staff == null)
             {
                 return NotFound();
             }
 
-            return Ok(venue);
+            return Ok(staff);
         }
 
-        // PUT: api/Venues/5
+        // PUT: api/Staffs/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutVenue(int id, Venue venue)
+        public async Task<IActionResult> PutStaff(int id, Staff staff)
         {
-            if (id != venue.Id)
+            if (id != staff.Id)
             {
                 return BadRequest();
             }
 
-            //_context.Entry(venue).State = EntityState.Modified;
-            _unitOfWork.Venues.Update(venue);
+            //_context.Entry(staff).State = EntityState.Modified;
+            _unitOfWork.Staffs.Update(staff);
 
             try
             {
@@ -74,8 +74,8 @@ namespace EventRegistration.Server.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                //if (!VenueExists(id))
-                if(!await VenueExists(id))
+                //if (!StaffExists(id))
+                if(!await StaffExists(id))
                 {
                     return NotFound();
                 }
@@ -88,45 +88,45 @@ namespace EventRegistration.Server.Controllers
             return NoContent();
         }
 
-        // POST: api/Venues
+        // POST: api/Staffs
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Venue>> PostVenue(Venue venue)
+        public async Task<ActionResult<Staff>> PostStaff(Staff staff)
         {
-            //_context.Venues.Add(venue);
+            //_context.Staffs.Add(staff);
             //await _context.SaveChangesAsync();
-             await _unitOfWork.Venues.Insert(venue);
+             await _unitOfWork.Staffs.Insert(staff);
             await _unitOfWork.Save(HttpContext);
 
 
-            return CreatedAtAction("GetVenue", new { id = venue.Id }, venue);
+            return CreatedAtAction("GetStaff", new { id = staff.Id }, staff);
         }
 
-        // DELETE: api/Venues/5
+        // DELETE: api/Staffs/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteVenue(int id)
+        public async Task<IActionResult> DeleteStaff(int id)
         {
-            //var venue = await _context.Venues.FindAsync(id);
-            var venue = await _unitOfWork.Venues.Get(q => q.Id == id);
-            if (venue == null)
+            //var staff = await _context.Staffs.FindAsync(id);
+            var staff = await _unitOfWork.Staffs.Get(q => q.Id == id);
+            if (staff == null)
             {
                 return NotFound();
             }
 
-            //_context.Venues.Remove(venue);
+            //_context.Staffs.Remove(staff);
             //await _context.SaveChangesAsync();
-            await _unitOfWork.Venues.Delete(id);
+            await _unitOfWork.Staffs.Delete(id);
             await _unitOfWork.Save(HttpContext);
 
             return NoContent();
         }
 
-        //private bool VenueExists(int id)
-        private async Task<bool> VenueExists (int id)
+        //private bool StaffExists(int id)
+        private async Task<bool> StaffExists (int id)
         {
-            //return _context.Venues.Any(e => e.Venueid == id);
-            var venue = _unitOfWork.Venues.Get(q => q.Id == id);
-            return venue != null;
+            //return _context.Staffs.Any(e => e.Staffid == id);
+            var staff = _unitOfWork.Staffs.Get(q => q.Id == id);
+            return staff != null;
         }
     }
 }

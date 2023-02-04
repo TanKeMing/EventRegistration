@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace EventRegistration.Shared.Domain
 {
-    public class Customer
+    public class Customer :BaseDomainModel
     {
-        public int Customerid { get; set; }
         public string Customername { get; set; }
         public string Customeraddress { get; set; }
         public string Customeremail { get; set; }

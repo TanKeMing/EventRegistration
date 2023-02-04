@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace EventRegistration.Shared.Domain
 {
-    public class Venue
+    public class Venue :BaseDomainModel
     {
-        public int Venueid { get; set; }
+
        public string Venuename { get; set; }
         public string Venueaddress { get; set; }
         public string Venuedescription { get; set; }

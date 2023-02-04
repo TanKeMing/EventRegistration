@@ -6,16 +6,9 @@ using System.Threading.Tasks;
 
 namespace EventRegistration.Shared.Domain
 {
-    public class Payment
+    public class Payment :BaseDomainModel
     {
-        public int Paymentid { get; set; }
-        public DateTime PaymentdateCreated { get; set; }
-
-        public DateTime PaymentdateUpdated { get; set; }
-
-        public string PaymentCreatedBy { get; set; }
-
-        public string PaymentUpdatedby { get; set; }
+       
         public string Paymenttype { get; set; }
         public string Totalpayment { get; set; }
         public int Registrationid { get; set; }

@@ -15,14 +15,14 @@ namespace EventRegistration.Server.Configuration.Entities
             builder.HasData(
                    new Staff
                    {
-                       Staffid = 1,
+                       Id = 1,
                        Staffemail = "kolan@gmail.com",
                        Staffcontactnumber = "89422042",
                        Staffgender = "female"
                    },
                      new Staff
                      {
-                         Staffid = 2,
+                         Id = 2,
                          Staffemail = "sam@gmail.com",
                          Staffcontactnumber = "99427042",
                          Staffgender = "male"

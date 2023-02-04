@@ -15,14 +15,14 @@ namespace EventRegistration.Server.Configuration.Entities
             builder.HasData(
                 new Venue
                 {
-                    Venueid = 1,
+                    Id = 1,
                     Venuename = "Expo",
                     Venueaddress = " Changi",
                     Venuedescription = "Tech show"
                 },
                  new Venue
                  {
-                     Venueid = 2,
+                     Id = 2,
                      Venuename = "Tampines Hall",
                      Venueaddress = "Tampines Heartbeat",
                      Venuedescription = "Food show"
