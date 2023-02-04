@@ -11,6 +11,7 @@ else
     <table class="table table-responsive">
         <thead>
             <tr>
+                <th>Name</th>
                 <th>Email</th>
                 <th>Staffaddress</th>
                 <th>Staffdescription</th>
@@ -21,6 +22,7 @@ else
             @foreach (var staff in Staffs)
             {
             <tr>
+                <td>@staff.Staffname</td>
                 <td>@staff.Staffemail</td>
                 <td>@staff.Staffcontactnumber</td>
                 <td>@staff.Staffgender</td>
@@ -51,7 +53,7 @@ else
     async Task Delete(int staffId)
     {
         var staff = Staffs.First(q => q.Id == staffId);
-        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {staff.Staffemail}?");
+        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {staff.Staffname}?");
         if (confirm)
         {
             await _client.DeleteAsync($"{Endpoints.StaffsEndpoint}/{staffId}");

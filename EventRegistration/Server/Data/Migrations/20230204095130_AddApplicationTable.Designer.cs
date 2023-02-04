@@ -4,14 +4,16 @@ using EventRegistration.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EventRegistration.Server.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230204095130_AddApplicationTable")]
+    partial class AddApplicationTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -181,15 +183,6 @@ namespace EventRegistration.Server.Data.Migrations
                     b.Property<string>("EventVenue")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("Eventdatein")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("Eventdateout")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Eventtime")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Updatedby")
                         .HasColumnType("nvarchar(max)");
 
@@ -217,12 +210,6 @@ namespace EventRegistration.Server.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("Paymentdatein")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("Paymentdateout")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Paymenttype")
@@ -268,9 +255,6 @@ namespace EventRegistration.Server.Data.Migrations
 
                     b.Property<DateTime>("Dateout")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Registrationtime")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Updatedby")
                         .HasColumnType("nvarchar(max)");

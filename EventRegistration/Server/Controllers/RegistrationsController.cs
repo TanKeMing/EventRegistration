@@ -33,7 +33,7 @@ namespace EventRegistration.Server.Controllers
         {
             //Refractored
             //return await _context.Registrations.ToListAsync();
-            var registrations = await _unitOfWork.Registrations.GetAll();
+            var registrations = await _unitOfWork.Registrations.GetAll(includes: q => q.Include(x => x.Customer));
             return Ok(registrations);
         }
 

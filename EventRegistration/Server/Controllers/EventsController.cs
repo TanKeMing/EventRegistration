@@ -33,8 +33,8 @@ namespace EventRegistration.Server.Controllers
         {
             //Refractored
             //return await _context.Events.ToListAsync();
-            var eventss = await _unitOfWork.Events.GetAll();
-            return Ok(eventss);
+            var events = await _unitOfWork.Events.GetAll();
+            return Ok(events);
         }
 
         // GET: api/Events/5

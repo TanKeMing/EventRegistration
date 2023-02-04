@@ -1,0 +1,68 @@
+﻿@page "/registrations/"
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+<h3 class="card title"> Registrations </h3>
+@if (Registrations == null)
+{
+    <div class="alert alert-info">Loading Registrations...</div> }
+else
+{
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th>location</th>
+            <th>Registrationtime</th>
+            <th>CustomerName</th>
+            <th>Customeremail</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var registration in Registrations)
+        {
+        <tr>
+            <td>@registration.location</td>
+            <td>@registration.Registrationtime</td>
+            <td>@registration.Customer.Customername</td>
+            <td>@registration.Customer.Customeremail</td>
+            <td>@registration.DateCreated.Date.ToString("dd MMMM yyyy")</td>
+            <td>@((registration.Datein - registration.Dateout).TotalDays.ToString())</td>
+            <td>
+
+                <a href="/registrations/view/@registration.Id" class="btn btn-primary">
+                    <span class="oi oi-book"></span>
+                </a>
+                <a href="/registrations/edit/@registration.Id" class="btn btn-warning">
+                    <span class="oi oi-pencil"></span>
+                </a>
+                <button class="btn btn-danger" @onclick="@(()=>Delete(registration.Id))">
+                    <span class="oi oi-delete"></span>
+                </button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>}
+
+@code {
+    private List<Registration> Registrations;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Registrations = await _client.GetFromJsonAsync<List<Registration>>($"{Endpoints.RegistrationsEndpoint}");
+    }
+
+    async Task Delete(int registrationId)
+    {
+        var registration = Registrations.First(q => q.Id == registrationId);
+        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {registration.location}?");
+        if (confirm)
+        {
+            await _client.DeleteAsync($"{Endpoints.RegistrationsEndpoint}/{registrationId}");
+            await OnInitializedAsync();
+        }
+    }
+
+}

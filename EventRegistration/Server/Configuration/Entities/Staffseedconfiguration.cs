@@ -16,6 +16,7 @@ namespace EventRegistration.Server.Configuration.Entities
                    new Staff
                    {
                        Id = 1,
+                       Staffname ="Kolan",
                        Staffemail = "kolan@gmail.com",
                        Staffcontactnumber = "89422042",
                        Staffgender = "female"
@@ -23,6 +24,7 @@ namespace EventRegistration.Server.Configuration.Entities
                      new Staff
                      {
                          Id = 2,
+                         Staffname = "Sam",
                          Staffemail = "sam@gmail.com",
                          Staffcontactnumber = "99427042",
                          Staffgender = "male"
