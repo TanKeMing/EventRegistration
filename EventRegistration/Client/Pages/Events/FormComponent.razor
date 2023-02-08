@@ -1,0 +1,79 @@
+﻿@inject HttpClient _client
+
+<EditForm Model="@events" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+
+    <div class="form-group">
+        <label>Event name: </label>
+        <div>
+            <InputText @bind-Value="@events.EventName" class="form-control" />
+            <ValidationMessage For="@(() => events.EventName)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Event description: </label>
+        <div>
+            <InputText @bind-Value="@events.EventDescription" class="form-control" />
+            <ValidationMessage For="@(() => events.EventDescription)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Event venue: </label>
+        <div>
+            <InputText @bind-Value="@events.EventVenue" class="form-control" />
+            <ValidationMessage For="@(() => events.EventVenue)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Event time: </label>
+        <div>
+            <InputText @bind-Value="@events.Eventtime" class="form-control" />
+            <ValidationMessage For="@(() => events.Eventtime)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Date Created: </label>
+        <div>
+            <InputDate @bind-Value="@events.Eventdatein" class="form-control" />
+            <ValidationMessage For="@(() => events.Eventdatein)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>VenueName </label>
+        <div>
+            <InputSelect @bind-Value="events.Venueid" class="form-control">
+                <option value="">-- Select Venue ID --</option>
+                @if (Venues != null)
+                {
+                    foreach (var venue in Venues)
+                    {
+<option value="@venue.Id">@venue.Venuename</option>}
+}
+            </InputSelect>
+            <ValidationMessage For="@(() => events.Venueid)" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success btn-block">
+        @ButtonText
+    </button>
+    <EventRegistration.Client.Component.BackToList Target="eventss" />
+</EditForm>
+
+@code { [Parameter] public Event events { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+    private IList<Venue> Venues;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Venues = await _client.GetFromJsonAsync<List<Venue>>($"{Endpoints.VenuesEndpoint}");
+    } }
+

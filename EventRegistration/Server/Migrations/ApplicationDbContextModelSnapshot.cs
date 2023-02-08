@@ -4,16 +4,14 @@ using EventRegistration.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace EventRegistration.Server.Data.Migrations
+namespace EventRegistration.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230201173531_AddedDefaultDataAndUser")]
-    partial class AddedDefaultDataAndUser
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -94,7 +92,7 @@ namespace EventRegistration.Server.Data.Migrations
 
             modelBuilder.Entity("EventRegistration.Shared.Domain.Category", b =>
                 {
-                    b.Property<int>("Categoryid")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -105,17 +103,32 @@ namespace EventRegistration.Server.Data.Migrations
                     b.Property<string>("Categoryname")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Categoryid");
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Updatedby")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Categorys");
                 });
 
             modelBuilder.Entity("EventRegistration.Shared.Domain.Customer", b =>
                 {
-                    b.Property<int>("Customerid")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Customeraddress")
                         .HasColumnType("nvarchar(max)");
@@ -129,20 +142,35 @@ namespace EventRegistration.Server.Data.Migrations
                     b.Property<string>("Customernumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Customerid");
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Updatedby")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("EventRegistration.Shared.Domain.Event", b =>
                 {
-                    b.Property<int>("Eventid")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("EventCreatedBy")
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("EventDescription")
                         .HasColumnType("nvarchar(max)");
@@ -150,22 +178,25 @@ namespace EventRegistration.Server.Data.Migrations
                     b.Property<string>("EventName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("EventUpdatedby")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("EventVenue")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("EventdateCreated")
+                    b.Property<DateTime>("Eventdatein")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("EventdateUpdated")
+                    b.Property<DateTime>("Eventdateout")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Eventtime")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Updatedby")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Venueid")
                         .HasColumnType("int");
 
-                    b.HasKey("Eventid");
+                    b.HasKey("Id");
 
                     b.HasIndex("Venueid");
 
@@ -174,21 +205,24 @@ namespace EventRegistration.Server.Data.Migrations
 
             modelBuilder.Entity("EventRegistration.Shared.Domain.Payment", b =>
                 {
-                    b.Property<int>("Paymentid")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("PaymentCreatedBy")
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PaymentUpdatedby")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("PaymentdateCreated")
+                    b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("PaymentdateUpdated")
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Paymentdatein")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Paymentdateout")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Paymenttype")
@@ -200,7 +234,10 @@ namespace EventRegistration.Server.Data.Migrations
                     b.Property<string>("Totalpayment")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Paymentid");
+                    b.Property<string>("Updatedby")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("Registrationid");
 
@@ -209,7 +246,7 @@ namespace EventRegistration.Server.Data.Migrations
 
             modelBuilder.Entity("EventRegistration.Shared.Domain.Registration", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -226,13 +263,25 @@ namespace EventRegistration.Server.Data.Migrations
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("Datein")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Dateout")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Registrationname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Registrationtime")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Updatedby")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("location")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.HasIndex("Customerid");
 
@@ -241,10 +290,19 @@ namespace EventRegistration.Server.Data.Migrations
 
             modelBuilder.Entity("EventRegistration.Shared.Domain.Staff", b =>
                 {
-                    b.Property<int>("Staffid")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Staffcontactnumber")
                         .HasColumnType("nvarchar(max)");
@@ -255,33 +313,57 @@ namespace EventRegistration.Server.Data.Migrations
                     b.Property<string>("Staffgender")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Staffid");
+                    b.Property<string>("Staffname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Updatedby")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Staffs");
 
                     b.HasData(
                         new
                         {
-                            Staffid = 1,
+                            Id = 1,
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Staffcontactnumber = "89422042",
                             Staffemail = "kolan@gmail.com",
-                            Staffgender = "female"
+                            Staffgender = "female",
+                            Staffname = "Kolan"
                         },
                         new
                         {
-                            Staffid = 2,
+                            Id = 2,
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Staffcontactnumber = "99427042",
                             Staffemail = "sam@gmail.com",
-                            Staffgender = "male"
+                            Staffgender = "male",
+                            Staffname = "Sam"
                         });
                 });
 
             modelBuilder.Entity("EventRegistration.Shared.Domain.Venue", b =>
                 {
-                    b.Property<int>("Venueid")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Updatedby")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Venueaddress")
                         .HasColumnType("nvarchar(max)");
@@ -292,21 +374,25 @@ namespace EventRegistration.Server.Data.Migrations
                     b.Property<string>("Venuename")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Venueid");
+                    b.HasKey("Id");
 
-                    b.ToTable("Venus");
+                    b.ToTable("Venues");
 
                     b.HasData(
                         new
                         {
-                            Venueid = 1,
+                            Id = 1,
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Venueaddress = " Changi",
                             Venuedescription = "Tech show",
                             Venuename = "Expo"
                         },
                         new
                         {
-                            Venueid = 2,
+                            Id = 2,
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Venueaddress = "Tampines Heartbeat",
                             Venuedescription = "Food show",
                             Venuename = "Tampines Hall"

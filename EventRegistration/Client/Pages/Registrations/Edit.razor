@@ -1,0 +1,21 @@
+﻿@page "/registrations/edit/{id:int}"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3>Edit Registration</h3>
+
+<FormComponent ButtonText="Update" OnValidSubmit="EditRegistration" registration="registration" />
+
+@code { [Parameter] public int id { get; set; }
+            Registration registration = new Registration();
+
+            protected async override Task OnParametersSetAsync()
+            {
+                registration = await _client.GetFromJsonAsync<Registration>($"{Endpoints.RegistrationsEndpoint}/{id}");
+            }
+
+            async Task EditRegistration()
+            {
+                await _client.PutAsJsonAsync($"{Endpoints.RegistrationsEndpoint}/{id}", registration);
+                _navManager.NavigateTo("/registrations/");
+            } }

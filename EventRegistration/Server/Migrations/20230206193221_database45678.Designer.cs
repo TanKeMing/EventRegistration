@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace EventRegistration.Server.Data.Migrations
+namespace EventRegistration.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230203053013_newdb")]
-    partial class newdb
+    [Migration("20230206193221_database45678")]
+    partial class database45678
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -183,6 +183,15 @@ namespace EventRegistration.Server.Data.Migrations
                     b.Property<string>("EventVenue")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("Eventdatein")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Eventdateout")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Eventtime")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Updatedby")
                         .HasColumnType("nvarchar(max)");
 
@@ -210,6 +219,12 @@ namespace EventRegistration.Server.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Paymentdatein")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Paymentdateout")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Paymenttype")
@@ -250,6 +265,18 @@ namespace EventRegistration.Server.Data.Migrations
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("Datein")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Dateout")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Registrationname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Registrationtime")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Updatedby")
                         .HasColumnType("nvarchar(max)");
 
@@ -288,6 +315,9 @@ namespace EventRegistration.Server.Data.Migrations
                     b.Property<string>("Staffgender")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Staffname")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Updatedby")
                         .HasColumnType("nvarchar(max)");
 
@@ -303,7 +333,8 @@ namespace EventRegistration.Server.Data.Migrations
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Staffcontactnumber = "89422042",
                             Staffemail = "kolan@gmail.com",
-                            Staffgender = "female"
+                            Staffgender = "female",
+                            Staffname = "Kolan"
                         },
                         new
                         {
@@ -312,7 +343,8 @@ namespace EventRegistration.Server.Data.Migrations
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Staffcontactnumber = "99427042",
                             Staffemail = "sam@gmail.com",
-                            Staffgender = "male"
+                            Staffgender = "male",
+                            Staffname = "Sam"
                         });
                 });
 

@@ -3,6 +3,13 @@
 @inject IJSRuntime js
 @attribute [Authorize]
 <h3 class="card title"> Events </h3>
+<br />
+<a href="/eventss/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Event
+</a>
+<br />
+<br />
 @if (Events == null)
 {
     <div class="alert alert-info">Loading Events...</div> }
@@ -11,14 +18,15 @@ else
     <table class="table table-responsive">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>EventVenue</th>
+
+                <th>EventName</th>
                 <th>EventDescription</th>
+                <th>EventVenue</th>
                 <th>Eventtime</th>
-                <th>VenueDescription</th>
-                <th>VenueAddress</th>
-                <th>EventDate</th>
-                <th>Actions</th>
+                <th>Venue</th>
+                <th>Date</th>
+                <th>Action</th>
+
             </tr>
         </thead>
         <tbody>
@@ -26,13 +34,11 @@ else
             {
             <tr>
                 <td>@events.EventName</td>
-                <td>@events.EventVenue</td>
                 <td>@events.EventDescription</td>
+                <td>@events.EventVenue</td>
                 <td>@events.Eventtime</td>
-                <td>@events.Venue.Venuedescription</td>
-                <td>@events.Venue.Venueaddress</td>
-                <td>@events.DateCreated.Date.ToString("dd MMMM yyyy")</td>
-
+                <td>@events.Venue.Venuename</td>
+                <td>@events.Eventdatein.Date.ToString("dd MMMM yyyy")</td>
 
                 <td>
                     <a href="/eventss/view/@events.Id" class="btn btn-primary">
@@ -46,12 +52,13 @@ else
                     </button>
                 </td>
             </tr>
-}
+            }
         </tbody>
     </table>}
 
 @code {
     private List<Event> Events;
+    private DateTime nullDT = new DateTime(1, 1, 1, 0, 0, 0);
 
     protected async override Task OnInitializedAsync()
     {

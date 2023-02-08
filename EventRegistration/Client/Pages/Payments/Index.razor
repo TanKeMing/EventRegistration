@@ -3,6 +3,10 @@
 @inject IJSRuntime js
 @attribute [Authorize]
 <h3 class="card title"> Payments </h3>
+<a href="/payments/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Payment
+</a>
 @if (Payments == null)
 {
     <div class="alert alert-info">Loading Payments...</div> }
@@ -25,8 +29,7 @@ else
             <td>@payment.Totalpayment</td>
             <td>@payment.Paymenttype</td>
             <td>@payment.Registration.location</td>
-            <td>@payment.DateCreated.Date.ToString("dd MMMM yyyy")</td>
-            <td>@((payment.Paymentdatein - payment.Paymentdateout).TotalDays.ToString())</td>
+            <td>@payment.Paymentdatein.Date.ToString("dd MMMM yyyy")</td>
 
             <td>
                 <a href="/payments/view/@payment.Id" class="btn btn-primary">

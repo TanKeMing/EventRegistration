@@ -8,6 +8,7 @@ namespace EventRegistration.Shared.Domain
 {
     public class Registration :BaseDomainModel
     {
+        public string Registrationname { get; set; }
         public DateTime Datein { get; set; }
         public DateTime Dateout { get; set; }
         public string Registrationtime { get; set; }

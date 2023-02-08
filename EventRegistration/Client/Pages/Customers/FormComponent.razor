@@ -1,0 +1,44 @@
+﻿<EditForm Model="@customer" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label> Customer Name: </label>
+        <div>
+            <InputText @bind-Value="@customer.Customername" class="form-control" />
+            <ValidationMessage For="@(() => customer.Customername)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Customer Email: </label>
+        <div>
+            <InputText @bind-Value="@customer.Customeremail" class="form-control" />
+            <ValidationMessage For="@(() => customer.Customeremail)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Customer number: </label>
+        <div>
+            <InputText @bind-Value="@customer.Customernumber" class="form-control" />
+            <ValidationMessage For="@(() => customer.Customernumber)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Customer address: </label>
+        <div>
+            <InputText @bind-Value="@customer.Customeraddress" class="form-control" />
+            <ValidationMessage For="@(() => customer.Customeraddress)" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success btn-block">
+        @ButtonText
+    </button>
+    <EventRegistration.Client.Component.BackToList Target="customers" />
+</EditForm>
+
+@code { [Parameter] public Customer customer { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; } }
