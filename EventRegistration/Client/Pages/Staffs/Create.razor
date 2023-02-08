@@ -5,8 +5,9 @@
 <h3 class="card-title">Create New Staff</h3>
 <hr />
 <br />
-
-<EditForm Model="@staff" OnValidSubmit="CreateStaff">
+<FormComponent ButtonText="Create Staff" staff="staff"
+               OnValidSubmit="@CreateStaff" />
+@*<EditForm Model="@staff" OnValidSubmit="CreateStaff">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -45,7 +46,7 @@
     <button type="submit" class="btn btn-success btn-block">
         Insert Staff
     </button>
-</EditForm>
+</EditForm>*@
 
 @code { Staff staff = new Staff();
 

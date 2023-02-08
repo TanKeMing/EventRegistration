@@ -5,8 +5,10 @@
 <h3 class="card-title">Create New Event</h3>
 <hr />
 <br />
+<FormComponent ButtonText="Create Event" events="events"
+               OnValidSubmit="@CreateEvent" />
 
-<EditForm Model="@events" OnValidSubmit="CreateEvent">
+@*<EditForm Model="@events" OnValidSubmit="CreateEvent">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
@@ -69,7 +71,7 @@
     <button type="submit" class="btn btn-success btn-block">
         Create Event
     </button>
-</EditForm>
+</EditForm>*@
 
 @code {
     Event events = new Event();

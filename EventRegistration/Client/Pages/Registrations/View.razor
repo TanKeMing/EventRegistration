@@ -1,0 +1,15 @@
+﻿@page "/registrations/view/{id:int}"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3>View</h3>
+
+<FormComponent registration="registration" Disabled="true" />
+
+@code { [Parameter] public int id { get; set; }
+    Registration registration = new Registration();
+
+    protected async override Task OnParametersSetAsync()
+    {
+        registration = await _client.GetFromJsonAsync<Registration>($"{Endpoints.RegistrationsEndpoint}/{id}");
+    } }

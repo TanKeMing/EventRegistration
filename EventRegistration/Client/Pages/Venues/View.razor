@@ -1,0 +1,15 @@
+﻿@page "/venues/view/{id:int}"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3>View</h3>
+
+<FormComponent venue="venue" Disabled="true" />
+
+@code { [Parameter] public int id { get; set; }
+    Venue venue = new Venue();
+
+    protected async override Task OnParametersSetAsync()
+    {
+        venue = await _client.GetFromJsonAsync<Venue>($"{Endpoints.VenuesEndpoint}/{id}");
+    } }

@@ -6,31 +6,33 @@
 <br />
 <hr />
 <br />
-
-<EditForm Model="@category" OnValidSubmit="CreateCategory">
+<FormComponent ButtonText="Create Category" category="category"
+               OnValidSubmit="@CreateCategory" />
+@*<EditForm Model="@category" OnValidSubmit="CreateCategory">
     <DataAnnotationsValidator />
     <ValidationSummary />
-
-    <div class="form-group">
-        <label>Category name: </label>
-        <div>
-            <InputText @bind-Value="@category.Categoryname" class="form-control" />
-            <ValidationMessage For="@(() => category.Categoryname)" />
+    <FormComponent ButtonText="Create Category" category="category"
+                   OnValidSubmit="@CreateCategory" />
+    @* <div class="form-group">
+            <label>Category name: </label>
+            <div>
+                <InputText @bind-Value="@category.Categoryname" class="form-control" />
+                <ValidationMessage For="@(() => category.Categoryname)" />
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label>Category description: </label>
-        <div>
-            <InputText @bind-Value="@category.Categorydescription" class="form-control" />
-            <ValidationMessage For="@(() => category.Categorydescription)" />
-        </div>
-    </div>
+        <div class="form-group">
+            <label>Category description: </label>
+            <div>
+                <InputText @bind-Value="@category.Categorydescription" class="form-control" />
+                <ValidationMessage For="@(() => category.Categorydescription)" />
+            </div>
+        </div>*@
 
-    <button type="submit" class="btn btn-success btn-block">
+    @*<button type="submit" class="btn btn-success btn-block">
         Create Category
     </button>
-</EditForm>
+</EditForm>*@
 
 @code { Category category = new Category();
 
