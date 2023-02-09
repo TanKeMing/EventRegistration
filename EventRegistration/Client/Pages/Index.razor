@@ -1,46 +1,97 @@
 ﻿@page "/"
 @using System.Threading;
 
-<div class="header" style="background-color: lightskyblue; height: 350px;">
-    <h1 style="color: white; font-size: 70px; text-align: center; padding-top: 70px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Upcoming Events</h1>
-    <p style="color: ghostwhite; font-size: 35px; text-align: center; padding-top: 20px; font-family: Ravie">Join us for an unforgettable experience!</p>
-</div>
-
-<div class="topPart" style="background-color: #FFFF00; height: 350px;">
-    <h1 style="color: white; font-size: 70px; text-align: center; padding-top: 70px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Portfoilo</h1>
-    <span style="top:78px; position:relative; left:70px; color: salmon; font-size: 70px; font-family:Ravie">↓↓↓↓↓↓↓↓↓↓↓</span>
-</div>
-
-<div class="topPart" style="background-color: #3D33FF; height: 350px;">
-    <h1 style="color: white; font-size: 70px; text-align: center; padding-top: 70px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Concert Night</h1>
-    <span style="top:78px; position:relative; left:70px; color: salmon; font-size: 20px; font-family:Ravie">Live music event where attendees can enjoy an evening of entertainment and live music performances!</span>
-</div>
-<div class="topPart" style="background-color: #33FF69; height: 350px; ">
-    <h1 style="color: white; font-size: 70px; text-align: center; padding-top: 70px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Food Fair</h1>
-    <span style="top:78px; position:relative; left:70px; color: salmon; font-size: 20px; font-family:Ravie"> People can come together to enjoy a variety of food, drinks, and other culinary delights from different cultures and cuisines.</span>
-</div>
-<div class="topPart" style="background-color: #FF33E9; height: 350px; ">
-    <h1 style="color: white; font-size: 70px; text-align: center; padding-top: 70px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;">Tech Show</h1>
-    <span style="top: 78px; position: relative; left: 70px; color: #387633; font-size: 20px; font-family: Ravie"> Showcasing the latest technological advancements and innovations</span>
-</div>
+<div class="topPart">
+    <h3 style="position:relative; font-size:60px;top:30px;color:orangered">
+        Hosting an event
+    </h3>
 
 
+</div>
 
-@*
-    <div class="container">
-        <div class="row" style="padding-top: 50px;">
-            <div class="col-md-4">
-                <div class="card" style="background-color: gainsboro;">
-                    <img class="card-img-top" src="/Pictures/concert.jpg" alt="Concert">
-                    <div class="card-body">
-                        <h5 class="card-title" style="font-family: Ravie; color: orangered;">Concert Night</h5>
-                        <p class="card-text" style="font-family: Ravie; color: darkslategray;">Join us for an evening of live music and entertainment!</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="middlepart">
+    <h3 style="position:relative;font-family:Ravie; font-size:40px;top:30px;color:orangered">
+        Our Portfolio
+    </h3>
+    <div class="Events">
+        <p>
+
+            <NavLink class="nav-link" href="FoodsOrder">
+                <span aria-hidden="true"></span><img src="/Picture/concert.png" width="200" height="200"><br /> Concert
+            </NavLink>
+        </p>
+
+    </div>
+    <div class="Events">
+        <p>
+
+            <NavLink class="nav-link" href="FoodsOrder">
+                <span aria-hidden="true"></span><img src="/Picture/foodfair.png" width="200" height="200"><br />Food Fair
+            </NavLink>
+
+        </p>
+    </div>
+    <div class="Events">
+        <p>
+
+            <NavLink class="nav-link" href="FoodsOrder">
+                <span aria-hidden="true"></span><img src="/Picture/tech.png" width="200" height="200"><br />Food Fair
+            </NavLink>
+        </p>
+    </div>
+    <div class="Events">
+        <p>
+
+            <NavLink class="nav-link" href="FoodsOrder">
+                <span aria-hidden="true"></span><img src="/Picture/wedding.png" width="200" height="200"><br />Wedding
+            </NavLink>
+        </p>
     </div>
 
-*@
+</div>
 
+
+
+
+
+<style>
+    .topPart {
+        position: relative;
+        text-align: center;
+        left: -31px;
+        width: 105.7%;
+        height: 360px;
+        background-image: url("/Picture/header.png");
+    }
+
+    .middlepart {
+        position: relative;
+        left: -31px;
+        text-align: center;
+        top: 20px;
+        width: 105.7%;
+        height: 400px;
+        background-color: #FAACA8;
+        background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%);
+    }
+
+    .Events {
+        position: relative;
+        display: inline-block;
+        top: 50px;
+        vertical-align: middle;
+        text-align: center;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        border-radius: 24px;
+        background-image: linear-gradient(to right, rgb(242, 112, 156), rgb(255, 148, 114));
+    }
+</style>
+
+
+
+
+
+Collapse
+index.txt
+3 KB
 
