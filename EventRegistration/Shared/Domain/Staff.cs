@@ -19,6 +19,8 @@ namespace EventRegistration.Shared.Domain
         [DataType(DataType.PhoneNumber)]
         [RegularExpression(@"(6|8|9)\d{7}", ErrorMessage = "Contact Number is not a valid phone number")]
         public string Staffcontactnumber { get; set; }
+        [Required]
+        [StringLength(100, MinimumLength = 2, ErrorMessage = "StaffGender does not meet length requirements")]
         public string Staffgender { get; set; }
 
     }

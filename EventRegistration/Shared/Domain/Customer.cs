@@ -12,6 +12,8 @@ namespace EventRegistration.Shared.Domain
         [Required]
         [StringLength(100, MinimumLength = 2, ErrorMessage = "Customer does not meet length requirements")]
         public string Customername { get; set; }
+        [Required]
+        [StringLength(100, MinimumLength = 2, ErrorMessage = "Customer address does not meet length requirements")]
         public string Customeraddress { get; set; }
         [Required]
         [DataType(DataType.EmailAddress, ErrorMessage = "Email Address is not a valid email")]

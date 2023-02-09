@@ -9,7 +9,8 @@ namespace EventRegistration.Shared.Domain
 {
     public class Payment :BaseDomainModel
     {
-       
+        [Required]
+        [StringLength(100, MinimumLength = 2, ErrorMessage = "Paymenttype does not meet length requirements")]
         public string Paymenttype { get; set; }
         public string Totalpayment { get; set; }
         public DateTime Paymentdateout { get; set; }

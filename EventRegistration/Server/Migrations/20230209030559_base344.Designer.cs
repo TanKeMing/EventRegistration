@@ -4,14 +4,16 @@ using EventRegistration.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EventRegistration.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230209030559_base344")]
+    partial class base344
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -135,9 +137,7 @@ namespace EventRegistration.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Customeraddress")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Customeremail")
                         .IsRequired()
@@ -193,9 +193,7 @@ namespace EventRegistration.Server.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("EventVenue")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Eventdatein")
                         .HasColumnType("datetime2");
@@ -250,7 +248,9 @@ namespace EventRegistration.Server.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Totalpayment")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Updatedby")
                         .HasColumnType("nvarchar(max)");
@@ -331,9 +331,7 @@ namespace EventRegistration.Server.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Staffgender")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Staffname")
                         .IsRequired()
